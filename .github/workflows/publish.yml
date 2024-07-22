@@ -49,6 +49,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
+          path: BONSE
           node-version: "21"
           cache: ${{ env.manager }}
 
