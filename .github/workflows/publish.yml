@@ -51,6 +51,8 @@ jobs:
         with:
           working-directory: BONSE
           node-version: "21"
+          cache-dependency-path: |
+            BONSE/yarn.lock
           cache: ${{ env.manager }}
 
       - name: Setup Pages
