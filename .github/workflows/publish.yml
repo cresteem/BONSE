@@ -26,7 +26,7 @@ jobs:
           PAT: ${{ secrets.PAT }}
         run: |
           git clone https://x-access-token:${PAT}@github.com/cresteem/BONSE.git
-          
+
       - name: Detect package manager
         id: detect-package-manager
         working-directory: BONSE
@@ -49,7 +49,6 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          working-directory: BONSE
           node-version: "21"
           cache-dependency-path: |
             BONSE/yarn.lock
@@ -63,7 +62,7 @@ jobs:
       - name: Restore cache
         uses: actions/cache@v4
         with:
-          path: BONSE/.next/cache
+          path: BONSE/bonse_out/cache
           key: ${{ runner.os }}-nextjs-${{ hashFiles('BONSE/**/package-lock.json', 'BONSE/**/yarn.lock') }}-${{ hashFiles('BONSE/**.[jt]s', 'BONSE/**.[jt]sx') }}
           restore-keys: ${{ runner.os }}-nextjs-${{ hashFiles('BONSE/**/package-lock.json', 'BONSE/**/yarn.lock') }}-
 
@@ -78,7 +77,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: BONSE/bonse_out  # Adjust to your actual output directory
+          path: BONSE/bonse_out # Adjust to your actual output directory
 
   deploy:
     environment:
