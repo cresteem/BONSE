@@ -1,12 +1,8 @@
 import { Metadata } from "next";
 import Home from "../components/home";
+import metainfo from "../meta-info";
 
-export const metadata: Metadata = {
-  title: "Optimize Your Website for Search Engines with BONSE",
-  description:
-    "Discover how BONSE can help you optimize your website for search engines and improve your online visibility. Learn more about our SEO tool and start boosting your rankings today!",
-  keywords: "website optimization,SEO success,BONSE,search engine optimization",
-};
+export const metadata: Metadata = metainfo;
 
 export default () => {
   return <Home />;

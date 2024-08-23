@@ -6,6 +6,7 @@ import Banner from "../components/banner";
 import Footer from "../components/footer";
 import { Logo } from "../components/logo";
 import UserProfile from "../components/user-profile";
+import metainfo from "../meta-info";
 import "../styles/globals.scss";
 
 const navigation: { path: string; title: string }[] = [
@@ -74,6 +75,102 @@ export default function RootLayout({
 
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" type="image/x-icon" href="/favicons/favicon.ico" />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicons/favicon-16x16.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicons/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="48x48"
+          href="/favicons/favicon-48x48.png"
+        />
+        <link rel="manifest" href="/favicons/manifest.webmanifest" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="theme-color" content="#fff" />
+        <meta name="application-name" content="BONSE" />
+        <link
+          rel="apple-touch-icon"
+          sizes="57x57"
+          href="/favicons/apple-touch-icon-57x57.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="60x60"
+          href="/favicons/apple-touch-icon-60x60.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="72x72"
+          href="/favicons/apple-touch-icon-72x72.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="76x76"
+          href="/favicons/apple-touch-icon-76x76.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="114x114"
+          href="/favicons/apple-touch-icon-114x114.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="120x120"
+          href="/favicons/apple-touch-icon-120x120.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="144x144"
+          href="/favicons/apple-touch-icon-144x144.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="152x152"
+          href="/favicons/apple-touch-icon-152x152.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="167x167"
+          href="/favicons/apple-touch-icon-167x167.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/favicons/apple-touch-icon-180x180.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="1024x1024"
+          href="/favicons/apple-touch-icon-1024x1024.png"
+        />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta
+          name="apple-mobile-web-app-status-bar-style"
+          content="black-translucent"
+        />
+        <meta name="apple-mobile-web-app-title" content="BONSE" />
+        <link
+          rel="yandex-tableau-widget"
+          href="/favicons/yandex-browser-manifest.json"
+        />
+
+        <meta property="og:title" content={metainfo.title} />
+        <meta property="og:description" content={metainfo.description} />
+
+        <meta name="twitter:title" content={metainfo.title} />
+        <meta name="twitter:description" content={metainfo.description} />
+      </head>
       <body>
         <header className="border-b border-gray-300 rounded-b-2xl">
           <Banner />
