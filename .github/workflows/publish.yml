@@ -1,8 +1,8 @@
 name: Deploy Next.js site to Pages
 
 on:
-  repository_dispatch:
-    types: [trigger-action]
+  push:
+    branches: ["main"]
   workflow_dispatch:
 
 permissions:
@@ -21,38 +21,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Cloning
-        env:
-          PAT: ${{ secrets.PAT }}
+      - name: Setup Firebase
         run: |
-          git clone https://x-access-token:${PAT}@github.com/cresteem/BONSE.git
-
-      - name: Detect package manager
-        id: detect-package-manager
-        working-directory: BONSE
-        run: |
-          if [ -f "yarn.lock" ]; then
-            echo "manager=yarn" >> $GITHUB_ENV
-            echo "command=install" >> $GITHUB_ENV
-            echo "runner=yarn" >> $GITHUB_ENV
-            exit 0
-          elif [ -f "package-lock.json" ]; then
-            echo "manager=npm" >> $GITHUB_ENV
-            echo "command=ci" >> $GITHUB_ENV
-            echo "runner=npx --no-install" >> $GITHUB_ENV
-            exit 0
-          else
-            echo "Unable to determine package manager"
-            exit 1
-          fi
+          mkdir secret
+          cd secret
+          echo ${{secrets.FIREBASE}} > firebase-config.ts
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "21"
+          node-version: "20"
           cache-dependency-path: |
-            BONSE/yarn.lock
-          cache: ${{ env.manager }}
+            yarn.lock
+          cache: yarn
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -62,22 +43,20 @@ jobs:
       - name: Restore cache
         uses: actions/cache@v4
         with:
-          path: BONSE/bonse_out/cache
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('BONSE/**/package-lock.json', 'BONSE/**/yarn.lock') }}-${{ hashFiles('BONSE/**.[jt]s', 'BONSE/**.[jt]sx') }}
-          restore-keys: ${{ runner.os }}-nextjs-${{ hashFiles('BONSE/**/package-lock.json', 'BONSE/**/yarn.lock') }}-
+          path: bonse_out/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('package-lock.json', 'yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          restore-keys: ${{ runner.os }}-nextjs-${{ hashFiles('package-lock.json', 'yarn.lock') }}-
 
       - name: Install dependencies
-        working-directory: BONSE
-        run: ${{ env.manager }} ${{ env.command }}
+        run: yarn install
 
       - name: Build with Next.js
-        working-directory: BONSE
-        run: ${{ env.runner }} next build
+        run: yarn next build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: BONSE/bonse_out # Adjust to your actual output directory
+          path: bonse_out
 
   deploy:
     environment:

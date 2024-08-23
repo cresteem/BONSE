@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+::-webkit-scrollbar {
+	display: none;
+	/* Safari and Chrome */
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	/* Optional: Hide scrollbar for Firefox */
+	scrollbar-width: none;
+	transition: all;
+	transition-duration: 700ms;
+}
+
+* {
+	box-sizing: content-box;
+}
+
+main,
+#result {
+	transition: opacity;
+	animation: initial-ani 0.6s ease-in 0s 1 forwards;
+}
+
+@keyframes initial-ani {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+.clicked-gen {
+	animation: spin 400ms linear;
+	transform-origin: center;
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+#block-msg {
+	display: none;
+}
