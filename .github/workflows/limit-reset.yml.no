@@ -1,0 +1,24 @@
+name: Usage limit reset
+
+on:
+  schedule:
+    - cron: "30 18 */3 * *" # Runs every third day at 6:30 PM UTC
+  workflow_dispatch: # Allows manual trigger
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.1.7
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4.0.3
+        with:
+          node-version: "22"
+
+      - name: Install dependencies
+        run: npm install firebase-admin
+
+      - name: Resetting Limits
+        run: node ./jobs/reset-limit.js
