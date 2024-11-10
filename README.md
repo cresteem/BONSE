@@ -268,7 +268,6 @@ BONSE is developed and is actively maintained by [DARSAN](https://darsan.in/) at
 <li>search engine indexing</li>
 <li>SEO tools</li>
 <li>SEO performance</li>
-<li>online marketing</li>
 <li>SEO automation</li>
 <li>SEO best practices</li>
 <li>SEO</li>
